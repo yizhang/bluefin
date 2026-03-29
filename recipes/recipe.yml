@@ -7,7 +7,7 @@ description: This is my personal OS image.
 
 # the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/silverblue-main
-image-version: 42 # latest is also supported if you want new updates ASAP
+image-version: 43 # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
 # you can include multiple instances of the same module
@@ -21,10 +21,22 @@ modules:
     repos:
       copr:
         - atim/starship
+        - dejan/lazygit
     install:
       packages:
-        - micro
+        - neovim
         - starship
+        - zsh
+        - curl
+        - wget
+        - ripgrep
+        - eza
+        - lazygit
+        - tmux
+        - btop
+        - bat
+        - podman
+        - git-delta
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
@@ -40,6 +52,8 @@ modules:
         install: # system flatpaks we want all users to have and not remove
           - org.mozilla.firefox
           - org.gnome.Loupe
+          - com.google.Chrome
+          - com.visualstudio.code
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
